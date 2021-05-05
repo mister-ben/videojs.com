@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import WithMdxComponents from '../WithMdxComponents';
 
@@ -34,16 +34,17 @@ const Wrapper = styled.article`
 const GettingStartedArticle = ({ mdxData }) => (
   <Wrapper>
     <WithMdxComponents contentSlug={mdxData.fields.slug}>
-      <MDXRenderer>{mdxData.code.body.replace(/\$\{VJS_VERSION\}/g, version)}</MDXRenderer>
+      <MDXRenderer>{mdxData.body.replace(/\$\{VJS_VERSION\}/g, version)}</MDXRenderer>
     </WithMdxComponents>
   </Wrapper>
 );
 
 GettingStartedArticle.propTypes = {
   mdxData: PropTypes.shape({
-    code: PropTypes.shape({
-      body: PropTypes.string.isRequired,
-    }).isRequired,
+    body: PropTypes.string.isRequired,
+    // code: PropTypes.shape({
+    //   body: PropTypes.string.isRequired,
+    // }).isRequired,
     fields: PropTypes.shape({
       slug: PropTypes.string.isRequired,
     }).isRequired,

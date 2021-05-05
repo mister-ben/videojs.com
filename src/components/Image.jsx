@@ -13,8 +13,8 @@ const Image = ({ filename, alt, fluid, presentationWidth }) => (
               name
               publicURL
               childImageSharp {
-                sizes(maxWidth: 1200) {
-                  ...GatsbyImageSharpSizes
+                fixed(width: 1200) {
+                  ...GatsbyImageSharpFixed
                 }
                 fluid(maxWidth: 1200) {
                   ...GatsbyImageSharpFluid
@@ -38,7 +38,8 @@ const Image = ({ filename, alt, fluid, presentationWidth }) => (
         return <img src={image.node.publicURL} alt={alt} />;
       }
 
-      const imageSizes = image.node.childImageSharp.sizes;
+      //const imageSizes = image.node.childImageSharp.sizes;
+      const imageFixed = image.node.childImageSharp.fixed;
       const imageFluid = image.node.childImageSharp.fluid;
 
       const imgProps = { alt };
@@ -46,7 +47,7 @@ const Image = ({ filename, alt, fluid, presentationWidth }) => (
       if (fluid) {
         Object.assign(imgProps, { fluid: imageFluid });
       } else {
-        Object.assign(imgProps, { sizes: imageSizes });
+        Object.assign(imgProps, { fixed: imageFixed });
       }
 
       if (presentationWidth) {
