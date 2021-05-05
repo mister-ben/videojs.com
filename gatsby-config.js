@@ -5,6 +5,7 @@ module.exports = {
     author: `@videojs`,
   },
   plugins: [
+    'gatsby-plugin-preact',
     'gatsby-plugin-styled-components',
     `gatsby-plugin-react-helmet`,
     {
